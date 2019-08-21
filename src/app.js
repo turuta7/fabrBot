@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
   res.send('server Work')
 
 })
+let time;
 const usersAl2 = [];
 
 
@@ -63,6 +64,7 @@ bot.onText(/\/start/, async (msg) => {
 
 
 setInterval(() => {
+  console.log(time);
 
   const now = new Date();
   time = `${now.getHours()}:${now.getMinutes()}`;
