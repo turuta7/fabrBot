@@ -131,7 +131,7 @@ setInterval(() => {
   }
 
 
-}, 50000);
+}, 55000);
 
 setInterval(function () {
   https.get("https://fabrnew.herokuapp.com/");
