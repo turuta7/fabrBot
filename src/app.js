@@ -65,6 +65,10 @@ bot.onText(/\/start/, async (msg) => {
 
 setInterval(() => {
   console.log(time);
+  const a = '16:15';
+  console.log(a);
+  console.log(time === a);
+
 
   const now = new Date();
   time = `${now.getHours()}:${now.getMinutes()}`;
@@ -119,6 +123,13 @@ setInterval(() => {
   }
 
   if (time === '13:10') {
+    for (let i = 0; i < id.length; i += 1) {
+      bot.sendMessage(id[i], 'Перерыв окончен')
+    }
+  }
+
+  if (time === '13:10') {
+    console.log('test aaa');
     for (let i = 0; i < id.length; i += 1) {
       bot.sendMessage(id[i], 'Перерыв окончен')
     }
