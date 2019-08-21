@@ -13,43 +13,128 @@ const express = require('express');
 const app = express();
 const idTelegran = require('../models/').telegramt;
 
-app.get('/', async (req, res) => {
-
-    // await idTelegran.create({
-    //     tel_id: 1,
-    //   })
-
-
-
+app.get('/', (req, res) => {
   res.send('server Work')
   next()
 })
+const usersAl2 = [];
 
 
 bot.onText(/\/start/, async (msg) => {
-    try {
-      //const id = unique.filter((v, i, a) => a.indexOf(v) === i);
-      bot.sendMessage(msg.chat.id, `Добрый день, ${msg.chat.first_name}. Добро пожаловать!`, {
-      });
-  
-      console.log(msg.chat.id);
-      console.log(typeof (msg.chat.id));
-  
-  
+
+  const idUSER1 = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
+  //const usersAll = idUSER1.map(x => x.dataValues.tel_id === msg.chat.id);
+  const usersAl2 = idUSER1.map(x => x.dataValues.tel_id);
+
+
+  console.log('------------------------------------');
+
+
+
+
+  console.log('------------------------------------');
+
+  try {
+    bot.sendMessage(msg.chat.id, `Добрый день, ${msg.chat.first_name}. Добро пожаловать!`, {
+    });
+
+    console.log(usersAl2);
+    const testUser = usersAl2.includes(msg.chat.id);
+    if (testUser === false) {
+      console.log('вы подписаны на рассылку!');
+
       await idTelegran.create({
         tel_id: msg.chat.id,
       })
-      // unique.push(msg.chat.id)
-  
-      // console.log(id);
-    } catch (error) {
-      console.log(error);
-  
+      bot.sendMessage(msg.chat.id, `${msg.chat.first_name}. вы подписаны на рассылку!`, {});
+      return
     }
-  
-  
-  
-  })
-  
+    console.log('вы УЖЕ подписаны на рассылку!');
+    bot.sendMessage(msg.chat.id, `${msg.chat.first_name}. вы уже подписаны на рассылку!`, {});
+    return
 
-app.listen(process.env.PORT || 4000)
+  } catch (error) {
+    console.log(error);
+
+  }
+})
+
+
+
+setInterval(() => {
+
+  const now = new Date();
+  time = `${now.getHours()}:${now.getMinutes()}`;
+  const id = usersAl2;
+
+  if (time === '5:28') {
+    for (let i = 0; i < id.length; i += 1)
+      bot.sendMessage(id[i], 'Хорошего рабочего дня!!!')
+
+  }
+
+  if (time === '7:28') {
+    for (let i = 0; i < id.length; i += 1) {
+      bot.sendMessage(id[i], 'Скоро перерыв')
+    }
+  }
+
+  if (time === '7:39') {
+    for (let i = 0; i < id.length; i += 1) {
+      bot.sendMessage(id[i], 'Перерыв окончен')
+    }
+  }
+
+  if (time === '9:25') {
+    for (let i = 0; i < id.length; i += 1) {
+      bot.sendMessage(id[i], 'Обед через 5 мин.')
+    }
+  }
+
+  if (time === '9:59') {
+    for (let i = 0; i < id.length; i += 1) {
+      bot.sendMessage(id[i], 'Уже нужно работать!!!')
+    }
+  }
+
+  if (time === '11:28') {
+    for (let i = 0; i < id.length; i += 1) {
+      bot.sendMessage(id[i], 'Скоро перерыв')
+    }
+  }
+
+  if (time === '11:39') {
+    for (let i = 0; i < id.length; i += 1) {
+      bot.sendMessage(id[i], 'Перерыв окончен')
+    }
+  }
+
+  if (time === '12:58') {
+    for (let i = 0; i < id.length; i += 1) {
+      bot.sendMessage(id[i], 'Скоро перерыв')
+    }
+  }
+
+  if (time === '13:10') {
+    for (let i = 0; i < id.length; i += 1) {
+      bot.sendMessage(id[i], 'Перерыв окончен')
+    }
+  }
+
+  if (time === '14:30') {
+    for (let i = 0; i < id.length; i += 1) {
+      bot.sendMessage(id[i], 'Пора домой!!! До завтра!')
+    }
+  }
+
+
+}, 50000);
+
+setInterval(function () {
+  https.get("https://fabrnew.herokuapp.com/");
+}, 300000); // every 5 minutes (300000)
+
+
+
+
+app.listen(process.env.PORT || 3030)
