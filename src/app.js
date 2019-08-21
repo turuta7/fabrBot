@@ -19,24 +19,28 @@ app.get('/', (req, res) => {
 
 })
 let time;
-const usersAl2 = [];
+const id = [];
 
-console.log('------------------------------------');
-console.log(usersAl2);
-console.log('------------------------------------');
 
 bot.onText(/\/start/, async (msg) => {
 
   const idUSER1 = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
   //const usersAll = idUSER1.map(x => x.dataValues.tel_id === msg.chat.id);
-  usersAl2 = idUSER1.map(x => x.dataValues.tel_id);
+  const usersAl2 = idUSER1.map(x => x.dataValues.tel_id);
 
+
+  console.log('------------------------------------');
+  console.log(usersAl2);
+
+  console.log('------------------------------------');
 
   try {
     bot.sendMessage(msg.chat.id, `Добрый день, ${msg.chat.first_name}. Добро пожаловать!`, {
     });
 
-    console.log(usersAl2);
+    if (id.length = 0) { id.push(usersAl2) };
+
+    console.log(id);
     const testUser = usersAl2.includes(msg.chat.id);
     if (testUser === false) {
       console.log('вы подписаны на рассылку!');
