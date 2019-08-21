@@ -31,7 +31,6 @@ bot.onText(/\/start/, async (msg) => {
 
   console.log('------------------------------------');
   console.log(usersAl2);
-
   console.log('------------------------------------');
 
   try {
@@ -72,10 +71,6 @@ setInterval(() => {
   time = `${now.getHours()}:${now.getMinutes()}`;
 
   console.log('time:' + time);
-  const a = '13:22';
-  console.log(a);
-  console.log(time === a);
-
 
 
   const id = usersAl2;
@@ -137,7 +132,7 @@ setInterval(() => {
     }
   }
 
-  if (time === '13:22') {
+  if (time === '13:45') {
     console.log('test aaa');
     for (let i = 0; i < id.length; i += 1) {
       bot.sendMessage(id[i], 'Перерыв окончен')
