@@ -72,8 +72,6 @@ setInterval(() => {
 
   console.log('time:' + time);
 
-
-  const id = usersAl2;
   console.log('------------------------------------');
   console.log(id);
   console.log('------------------------------------');
@@ -132,8 +130,8 @@ setInterval(() => {
     }
   }
 
-  if (time === '13:45') {
-    console.log('test aaa');
+  if (time === '13:50') {
+    console.log('test');
     for (let i = 0; i < id.length; i += 1) {
       bot.sendMessage(id[i], 'Перерыв окончен')
     }
