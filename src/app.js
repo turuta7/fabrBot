@@ -68,7 +68,7 @@ setInterval(() => {
   time = `${now.getHours()}:${now.getMinutes()}`;
 
   console.log('time:' + time);
-  const a = '16:22';
+  const a = '13:22';
   console.log(a);
   console.log(time === a);
 
