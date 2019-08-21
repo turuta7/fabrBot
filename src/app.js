@@ -130,12 +130,6 @@ setInterval(() => {
     }
   }
 
-  if (time === '13:50') {
-    console.log('test');
-    for (let i = 0; i < id.length; i += 1) {
-      bot.sendMessage(id[i], 'Перерыв окончен')
-    }
-  }
 
   if (time === '14:30') {
     for (let i = 0; i < id.length; i += 1) {
