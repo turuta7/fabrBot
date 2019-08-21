@@ -75,6 +75,9 @@ setInterval(() => {
 
 
   const id = usersAl2;
+  console.log('------------------------------------');
+  console.log(id);
+  console.log('------------------------------------');
 
   if (time === '5:28') {
     for (let i = 0; i < id.length; i += 1)
