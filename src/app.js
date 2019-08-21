@@ -21,20 +21,16 @@ app.get('/', (req, res) => {
 let time;
 const usersAl2 = [];
 
+console.log('------------------------------------');
+console.log(usersAl2);
+console.log('------------------------------------');
 
 bot.onText(/\/start/, async (msg) => {
 
   const idUSER1 = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
   //const usersAll = idUSER1.map(x => x.dataValues.tel_id === msg.chat.id);
-  const usersAl2 = idUSER1.map(x => x.dataValues.tel_id);
+  usersAl2 = idUSER1.map(x => x.dataValues.tel_id);
 
-
-  console.log('------------------------------------');
-
-
-
-
-  console.log('------------------------------------');
 
   try {
     bot.sendMessage(msg.chat.id, `Добрый день, ${msg.chat.first_name}. Добро пожаловать!`, {
