@@ -39,7 +39,7 @@ bot.onText(/\/start/, async (msg) => {
     });
 
     console.log(id.length);
-    if (id.length = 0) { id = usersAl2 };
+    if (id.length = 0) { id = idUSER1.map(x => id.push(x.dataValues.tel_id)) };
 
     console.log(id);
     const testUser = usersAl2.includes(msg.chat.id);
