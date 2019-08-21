@@ -16,7 +16,7 @@ const idTelegran = require('../models/').telegramt;
 
 app.get('/', (req, res) => {
   res.send('server Work')
-  next()
+
 })
 const usersAl2 = [];
 
