@@ -38,7 +38,8 @@ bot.onText(/\/start/, async (msg) => {
     bot.sendMessage(msg.chat.id, `Добрый день, ${msg.chat.first_name}. Добро пожаловать!`, {
     });
 
-    if (id.length = 0) { id.push(usersAl2) };
+    console.log(id.length);
+    if (id.length = 0) { id = usersAl2 };
 
     console.log(id);
     const testUser = usersAl2.includes(msg.chat.id);
