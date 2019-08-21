@@ -64,14 +64,16 @@ bot.onText(/\/start/, async (msg) => {
 
 
 setInterval(() => {
-  console.log(time);
-  const a = '16:15';
+  const now = new Date();
+  time = `${now.getHours()}:${now.getMinutes()}`;
+
+  console.log('time:' + time);
+  const a = '16:22';
   console.log(a);
   console.log(time === a);
 
 
-  const now = new Date();
-  time = `${now.getHours()}:${now.getMinutes()}`;
+
   const id = usersAl2;
 
   if (time === '5:28') {
@@ -128,7 +130,7 @@ setInterval(() => {
     }
   }
 
-  if (time === '13:10') {
+  if (time === '13:22') {
     console.log('test aaa');
     for (let i = 0; i < id.length; i += 1) {
       bot.sendMessage(id[i], 'Перерыв окончен')
