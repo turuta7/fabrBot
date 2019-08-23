@@ -72,7 +72,7 @@ bot.onText(/\/start/, async (msg) => {
 
 setInterval(() => {
   const now = new Date();
-  time = `${now.getHours()}:${now.getMinutes()}`;
+  console.log(time);
   if (now.getDay() >= 1 && now.getDay() <= 5) {
     if (time === '5:28') {
       for (let i = 0; i < id.length; i += 1)
