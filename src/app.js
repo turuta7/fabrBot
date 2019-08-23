@@ -47,7 +47,8 @@ bot.onText(/\/start/, async (msg) => {
     });
     const idUSER = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
     const usersAl2 = idUSER.map(x => x.dataValues.tel_id);
-    testUserDB()
+    testUserDB();
+
     const testUser = usersAl2.includes(msg.chat.id);
     if (testUser === false) {
       console.log('вы подписаны на рассылку!');
@@ -71,7 +72,7 @@ bot.onText(/\/start/, async (msg) => {
 
 setInterval(() => {
   const now = new Date();
-
+  time = `${now.getHours()}:${now.getMinutes()}`;
   if (now.getDay() >= 1 && now.getDay() <= 5) {
     if (time === '5:28') {
       for (let i = 0; i < id.length; i += 1)
