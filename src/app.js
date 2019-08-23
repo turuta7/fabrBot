@@ -20,6 +20,11 @@ app.get('/', (req, res) => {
 })
 let time;
 const id = [];
+console.log(id.length);
+if (id.length === 0) {
+  console.log('id =  0');
+  await idUSER1.map(x => id.push(x.dataValues.tel_id));
+};
 
 
 bot.onText(/\/start/, async (msg) => {
@@ -37,11 +42,7 @@ bot.onText(/\/start/, async (msg) => {
     bot.sendMessage(msg.chat.id, `Добрый день, ${msg.chat.first_name}. Добро пожаловать!`, {
     });
 
-    console.log(id.length);
-    if (id.length === 0) {
-      console.log('id =  0');
-      await idUSER1.map(x => id.push(x.dataValues.tel_id));
-    };
+
 
     console.log(id);
     const testUser = usersAl2.includes(msg.chat.id);
@@ -75,68 +76,68 @@ setInterval(() => {
   console.log('------------------------------------');
   console.log(id);
   console.log('------------------------------------');
+  if (now.getDay() >= 1 && now.getDay() <= 5) {
+    if (time === '5:28') {
+      for (let i = 0; i < id.length; i += 1)
+        bot.sendMessage(id[i], 'Хорошего рабочего дня!!!')
 
-  if (time === '5:28') {
-    for (let i = 0; i < id.length; i += 1)
-      bot.sendMessage(id[i], 'Хорошего рабочего дня!!!')
+    }
 
-  }
+    if (time === '7:28') {
+      for (let i = 0; i < id.length; i += 1) {
+        bot.sendMessage(id[i], 'Скоро перерыв')
+      }
+    }
 
-  if (time === '7:28') {
-    for (let i = 0; i < id.length; i += 1) {
-      bot.sendMessage(id[i], 'Скоро перерыв')
+    if (time === '7:39') {
+      for (let i = 0; i < id.length; i += 1) {
+        bot.sendMessage(id[i], 'Перерыв окончен')
+      }
+    }
+
+    if (time === '9:25') {
+      for (let i = 0; i < id.length; i += 1) {
+        bot.sendMessage(id[i], 'Обед через 5 мин.')
+      }
+    }
+
+    if (time === '9:59') {
+      for (let i = 0; i < id.length; i += 1) {
+        bot.sendMessage(id[i], 'Уже нужно работать!!!')
+      }
+    }
+
+    if (time === '11:28') {
+      for (let i = 0; i < id.length; i += 1) {
+        bot.sendMessage(id[i], 'Скоро перерыв')
+      }
+    }
+
+    if (time === '11:39') {
+      for (let i = 0; i < id.length; i += 1) {
+        bot.sendMessage(id[i], 'Перерыв окончен')
+      }
+    }
+
+    if (time === '12:58') {
+      for (let i = 0; i < id.length; i += 1) {
+        bot.sendMessage(id[i], 'Скоро перерыв')
+      }
+    }
+
+    if (time === '13:10') {
+      for (let i = 0; i < id.length; i += 1) {
+        bot.sendMessage(id[i], 'Перерыв окончен')
+      }
+    }
+
+
+    if (time === '14:30') {
+      for (let i = 0; i < id.length; i += 1) {
+        bot.sendMessage(id[i], 'Пора домой!!! До завтра!')
+      }
     }
   }
-
-  if (time === '7:39') {
-    for (let i = 0; i < id.length; i += 1) {
-      bot.sendMessage(id[i], 'Перерыв окончен')
-    }
-  }
-
-  if (time === '9:25') {
-    for (let i = 0; i < id.length; i += 1) {
-      bot.sendMessage(id[i], 'Обед через 5 мин.')
-    }
-  }
-
-  if (time === '9:59') {
-    for (let i = 0; i < id.length; i += 1) {
-      bot.sendMessage(id[i], 'Уже нужно работать!!!')
-    }
-  }
-
-  if (time === '11:28') {
-    for (let i = 0; i < id.length; i += 1) {
-      bot.sendMessage(id[i], 'Скоро перерыв')
-    }
-  }
-
-  if (time === '11:39') {
-    for (let i = 0; i < id.length; i += 1) {
-      bot.sendMessage(id[i], 'Перерыв окончен')
-    }
-  }
-
-  if (time === '12:58') {
-    for (let i = 0; i < id.length; i += 1) {
-      bot.sendMessage(id[i], 'Скоро перерыв')
-    }
-  }
-
-  if (time === '13:10') {
-    for (let i = 0; i < id.length; i += 1) {
-      bot.sendMessage(id[i], 'Перерыв окончен')
-    }
-  }
-
-
-  if (time === '14:30') {
-    for (let i = 0; i < id.length; i += 1) {
-      bot.sendMessage(id[i], 'Пора домой!!! До завтра!')
-    }
-  }
-
 
 }, 55000);
 
