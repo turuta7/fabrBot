@@ -20,13 +20,28 @@ app.get('/', (req, res) => {
 })
 let time;
 const id = [];
-const idUSER1 = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
-console.log(id.length);
-if (id.length === 0) {
-  console.log('id =  0');
-  await idUSER1.map(x => id.push(x.dataValues.tel_id));
-};
 
+
+
+async function test() {
+
+
+  const idUSER1 = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
+  console.log(id.length);
+
+  if (id.length === 0) {
+    console.log('id =  0');
+    await idUSER1.map(x => id.push(x.dataValues.tel_id));
+  };
+  console.log(id.length);
+
+}
+test();
+
+
+console.log('------------------------------------');
+console.log(id);
+console.log('------------------------------------');
 
 bot.onText(/\/start/, async (msg) => {
 
@@ -43,7 +58,11 @@ bot.onText(/\/start/, async (msg) => {
     bot.sendMessage(msg.chat.id, `Добрый день, ${msg.chat.first_name}. Добро пожаловать!`, {
     });
 
-
+    // console.log(id.length);
+    // if (id.length === 0) {
+    //   console.log('id =  0');
+    //   await idUSER1.map(x => id.push(x.dataValues.tel_id));
+    // };
 
     console.log(id);
     const testUser = usersAl2.includes(msg.chat.id);
@@ -149,4 +168,4 @@ setInterval(function () {
 
 
 
-app.listen(process.env.PORT || 3030)
+app.listen(process.env.PORT || 4040)
