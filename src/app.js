@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 })
 let time;
 const id = [];
+const idUSER1 = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
 console.log(id.length);
 if (id.length === 0) {
   console.log('id =  0');
