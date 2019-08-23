@@ -74,61 +74,61 @@ setInterval(() => {
   const now = new Date();
   console.log(time);
   if (now.getDay() >= 1 && now.getDay() <= 5) {
-    if (time === '5:28') {
+    if (time === '8:28') {
       for (let i = 0; i < id.length; i += 1)
         bot.sendMessage(id[i], 'Хорошего рабочего дня!!!')
     }
 
-    if (time === '7:28') {
+    if (time === '10:28') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Скоро перерыв')
       }
     }
 
-    if (time === '7:39') {
+    if (time === '10:39') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Перерыв окончен')
       }
     }
 
-    if (time === '9:25') {
+    if (time === '12:25') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Обед через 5 мин.')
       }
     }
 
-    if (time === '9:59') {
+    if (time === '12:59') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Уже нужно работать!!!')
       }
     }
 
-    if (time === '11:28') {
+    if (time === '14:28') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Скоро перерыв')
       }
     }
 
-    if (time === '11:39') {
+    if (time === '14:39') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Перерыв окончен')
       }
     }
 
-    if (time === '12:58') {
+    if (time === '15:58') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Скоро перерыв')
       }
     }
 
-    if (time === '13:10') {
+    if (time === '16:10') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Перерыв окончен')
       }
     }
 
 
-    if (time === '14:30') {
+    if (time === '17:30') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Пора домой!!! До завтра!')
       }
