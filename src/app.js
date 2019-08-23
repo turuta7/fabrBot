@@ -22,49 +22,30 @@ let time;
 const id = [];
 
 
-
-async function test() {
-
-
-  const idUSER1 = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
-  console.log(id.length);
-
+async function testUserDB() {
+  const idUSER = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
   if (id.length === 0) {
     console.log('id =  0');
-    await idUSER1.map(x => id.push(x.dataValues.tel_id));
+    await idUSER.map(x => id.push(x.dataValues.tel_id));
   };
-  console.log(id.length);
-
+  console.log('------------------------------------');
+  console.log(`User: ${id.length}`);
+  console.log('------------------------------------');
+  console.log(id);
+  console.log('------------------------------------');
+  console.log(`time Server: ${time + 3}`);
+  console.log('------------------------------------');
+  return
 }
-test();
+testUserDB();
 
 
-console.log('------------------------------------');
-console.log(id);
-console.log('------------------------------------');
 
 bot.onText(/\/start/, async (msg) => {
-
-  const idUSER1 = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
-  //const usersAll = idUSER1.map(x => x.dataValues.tel_id === msg.chat.id);
-  const usersAl2 = idUSER1.map(x => x.dataValues.tel_id);
-
-
-  console.log('------------------------------------');
-  console.log(usersAl2);
-  console.log('------------------------------------');
-
   try {
     bot.sendMessage(msg.chat.id, `Добрый день, ${msg.chat.first_name}. Добро пожаловать!`, {
     });
-
-    // console.log(id.length);
-    // if (id.length === 0) {
-    //   console.log('id =  0');
-    //   await idUSER1.map(x => id.push(x.dataValues.tel_id));
-    // };
-
-    console.log(id);
+    testUserDB()
     const testUser = usersAl2.includes(msg.chat.id);
     if (testUser === false) {
       console.log('вы подписаны на рассылку!');
@@ -81,7 +62,6 @@ bot.onText(/\/start/, async (msg) => {
 
   } catch (error) {
     console.log(error);
-
   }
 })
 
@@ -91,16 +71,10 @@ setInterval(() => {
   const now = new Date();
   time = `${now.getHours()}:${now.getMinutes()}`;
 
-  console.log('time:' + time);
-
-  console.log('------------------------------------');
-  console.log(id);
-  console.log('------------------------------------');
   if (now.getDay() >= 1 && now.getDay() <= 5) {
     if (time === '5:28') {
       for (let i = 0; i < id.length; i += 1)
         bot.sendMessage(id[i], 'Хорошего рабочего дня!!!')
-
     }
 
     if (time === '7:28') {
@@ -165,7 +139,6 @@ setInterval(function () {
   https.get("https://fabrnew.herokuapp.com/");
 }, 300000); // every 5 minutes (300000)
 
-
-
-
-app.listen(process.env.PORT || 4040)
+app.listen(process.env.PORT || 4040, () => {
+  console.log(`Server Work`);
+})
