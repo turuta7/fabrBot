@@ -24,7 +24,7 @@ const id = [];
 
 async function testUserDB() {
   const now = new Date();
-  time = `${now.getHours()}:${now.getMinutes()}`;
+  time = `${now.getHours() + 3}:${now.getMinutes()}`;
   const idUSER = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
   if (id.length === 0) {
     console.log('id =  0');
@@ -35,7 +35,7 @@ async function testUserDB() {
   console.log('------------------------------------');
   console.log(id);
   console.log('------------------------------------');
-  console.log(`time Server: ${time + 3}`);
+  console.log(`time Server: ${time}`);
   console.log('------------------------------------');
   return
 }
@@ -71,7 +71,6 @@ bot.onText(/\/start/, async (msg) => {
 
 setInterval(() => {
   const now = new Date();
-  // time = `${now.getHours()}:${now.getMinutes()}`;
 
   if (now.getDay() >= 1 && now.getDay() <= 5) {
     if (time === '5:28') {
