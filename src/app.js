@@ -45,8 +45,8 @@ bot.onText(/\/start/, async (msg) => {
   try {
     bot.sendMessage(msg.chat.id, `Добрый день, ${msg.chat.first_name}. Добро пожаловать!`, {
     });
-
-    const usersAl2 = idUSER1.map(x => x.dataValues.tel_id);
+    const idUSER = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
+    const usersAl2 = idUSER.map(x => x.dataValues.tel_id);
     testUserDB()
     const testUser = usersAl2.includes(msg.chat.id);
     if (testUser === false) {
