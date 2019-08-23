@@ -1,23 +1,20 @@
 const TelegramBot = require('node-telegram-bot-api');
+const express = require('express');
 const https = require("https");
-
 require('dotenv').config();
 
 const { token } = process.env;
-
-console.log(token);
-
 const bot = new TelegramBot(token, { polling: true });
 
-const express = require('express');
+
 
 const app = express();
 const idTelegran = require('../models/').telegramt;
 
 app.get('/', (req, res) => {
   res.send('server Work')
-
 })
+
 let time;
 const id = [];
 
@@ -27,13 +24,14 @@ async function testUserDB() {
   time = `${now.getHours() + 3}:${now.getMinutes()}`;
   const idUSER = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
   if (id.length === 0) {
-    console.log('id =  0');
     await idUSER.map(x => id.push(x.dataValues.tel_id));
   };
   console.log('------------------------------------');
-  console.log(`User: ${id.length}`);
+  console.log(`brief information: `);
   console.log('------------------------------------');
-  console.log(id);
+  console.log(`Number of Users: ${id.length}`);
+  console.log('------------------------------------');
+  console.log(`User ID: ${id}`);
   console.log('------------------------------------');
   console.log(`time Server: ${time}`);
   console.log('------------------------------------');
@@ -47,6 +45,8 @@ bot.onText(/\/start/, async (msg) => {
   try {
     bot.sendMessage(msg.chat.id, `Добрый день, ${msg.chat.first_name}. Добро пожаловать!`, {
     });
+
+    const usersAl2 = idUSER1.map(x => x.dataValues.tel_id);
     testUserDB()
     const testUser = usersAl2.includes(msg.chat.id);
     if (testUser === false) {
@@ -134,7 +134,7 @@ setInterval(() => {
     }
   }
 
-}, 55000);
+}, 58000);
 
 setInterval(function () {
   https.get("https://fabrnew.herokuapp.com/");
