@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 })
 
 let time;
-const id = [];
+let id = [];
 
 
 async function testUserDB() {
@@ -47,13 +47,16 @@ bot.onText(/\/start/, async (msg) => {
     });
     const idUSER = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
     const usersAl2 = idUSER.map(x => x.dataValues.tel_id);
+    id = new Array;
+    if (id.length === 0) {
+      await idUSER.map(x => id.push(x.dataValues.tel_id));
+    };
+
 
     testUserDB();
-
     const testUser = usersAl2.includes(msg.chat.id);
     if (testUser === false) {
       console.log('вы подписаны на рассылку!');
-
       await idTelegran.create({
         tel_id: msg.chat.id,
       })
