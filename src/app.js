@@ -47,6 +47,7 @@ bot.onText(/\/start/, async (msg) => {
     });
     const idUSER = await idTelegran.findAll({ attributes: { exclude: ['createdAt', 'updatedAt'] } })
     const usersAl2 = idUSER.map(x => x.dataValues.tel_id);
+
     testUserDB();
 
     const testUser = usersAl2.includes(msg.chat.id);
@@ -56,6 +57,7 @@ bot.onText(/\/start/, async (msg) => {
       await idTelegran.create({
         tel_id: msg.chat.id,
       })
+      id.push(tel_id);
       bot.sendMessage(msg.chat.id, `${msg.chat.first_name}. вы подписаны на рассылку!`, {});
       return
     }
