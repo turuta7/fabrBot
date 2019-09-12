@@ -60,7 +60,7 @@ bot.onText(/\/start/, async (msg) => {
       await idTelegran.create({
         tel_id: msg.chat.id,
       })
-      id.push(tel_id);
+      id.push(msg.chat.id);
       bot.sendMessage(msg.chat.id, `${msg.chat.first_name}. вы подписаны на рассылку!`, {});
       return
     }
