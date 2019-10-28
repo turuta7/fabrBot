@@ -85,6 +85,41 @@ setInterval(() => {
         bot.sendMessage(id[i], 'Хорошего рабочего дня!!!')
     }
 
+
+
+
+
+
+
+
+    if (time === '7:50') {
+      for (let i = 0; i < id.length; i += 1) {
+
+        const city = 'cherkasy';
+        const { apiKeyWeather } = process.env;
+        const units = 'metric'
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyWeather}&units=${units}`
+
+        request(url, (err, response, body) => {
+          if (err) {
+            console.log('error:', err)
+          } else {
+            const weather = JSON.parse(body)
+            const response1 = `*Сейчас: ${weather.main.temp} градусов в ${weather.name}*
+            Влажность: ${weather.main.humidity} %
+            Облачность: ${weather.clouds.all} %`
+            bot.sendMessage(id, response1, { parse_mode: 'Markdown' });
+          }
+        })
+
+      }
+
+
+    }
+
+
+
+
     if (time === '10:28') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Скоро перерыв')
