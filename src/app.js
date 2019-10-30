@@ -75,10 +75,42 @@ bot.onText(/\/start/, async (msg) => {
 
 
 
+bot.onText(/\/weather/, async (msg) => {
+  let userId = msg.from.id;
+  try {
+
+    const city = 'cherkasy';
+    const { apiKeyWeather } = process.env;
+    const units = 'metric'
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyWeather}&units=${units}`
+
+    request(url, (err, response, body) => {
+      if (err) {
+        console.log('error:', err)
+      } else {
+        const weather = JSON.parse(body)
+        const response1 = `*Сейчас: ${weather.main.temp} градусов в ${weather.name}*
+        Влажность: ${weather.main.humidity} %
+        Облачность: ${weather.clouds.all} %`
+        bot.sendMessage(userId, response1, { parse_mode: 'Markdown' });
+      }
+    })
+
+
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+
+
+
+
+
 setInterval(() => {
   const now = new Date();
   time = `${now.getHours() + 2}:${now.getMinutes()}`;
-  console.log(time);
+  // console.log(time);
   if (now.getDay() >= 1 && now.getDay() <= 5) {
     if (time === '8:28') {
       for (let i = 0; i < id.length; i += 1)
@@ -92,7 +124,7 @@ setInterval(() => {
 
 
 
-    if (time === '7:50') {
+    if (time === '17:29') {
       for (let i = 0; i < id.length; i += 1) {
 
         const city = 'cherkasy';
@@ -108,7 +140,7 @@ setInterval(() => {
             const response1 = `*Сейчас: ${weather.main.temp} градусов в ${weather.name}*
             Влажность: ${weather.main.humidity} %
             Облачность: ${weather.clouds.all} %`
-            bot.sendMessage(id, response1, { parse_mode: 'Markdown' });
+            bot.sendMessage(id[i], response1, { parse_mode: 'Markdown' });
           }
         })
 
