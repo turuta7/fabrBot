@@ -3,6 +3,8 @@ const express = require('express');
 const https = require("https");
 require('dotenv').config();
 
+let request = require('request');
+
 const { token } = process.env;
 const bot = new TelegramBot(token, { polling: true });
 
