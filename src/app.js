@@ -61,6 +61,7 @@ async function testUserDB() {
 }
 testUserDB();
 
+// --------------------------------------------------
 bot.onText(/\/start/, async msg => {
   try {
     bot.sendMessage(
@@ -104,7 +105,25 @@ bot.onText(/\/start/, async msg => {
   }
 });
 
+
+// -----------------------------------------------------
 bot.onText(/\/weather/, async msg => {
+  const resp = 'Погода:';
+  bot.sendMessage(chatId, resp, {
+    reply_markup: {
+        remove_keyboard: true,
+        inline_keyboard: [
+            [
+                {
+                    text: 'Погода в Черкассах',
+                    callback_data: 'cherkasy',
+                },
+                
+            ],
+        ],
+    }
+  });
+
   const userId = msg.from.id;
   try {
     const city = 'cherkasy';
@@ -117,8 +136,9 @@ bot.onText(/\/weather/, async msg => {
         console.log('error:', err);
       } else {
         const weather = JSON.parse(body);
+        const clouds = 100 - weather.clouds.all;
         const response1 = `*Сейчас: ${weather.main.temp} градусов в ${weather.name}*
-        Влажность: ${weather.main.humidity} %
+        Влажность: ${clouds} %
         Облачность: ${weather.clouds.all} %`;
         bot.sendMessage(userId, response1, { parse_mode: 'Markdown' });
       }
@@ -159,13 +179,13 @@ setInterval(() => {
       }
     }
 
-    if (time === '10:28') {
+    if (time === '10:28' || time === '14:28' || time === '15:58') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Скоро перерыв');
       }
     }
 
-    if (time === '10:39') {
+    if (time === '10:39' || (time === '14:39' || time === '16:10' ) {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Перерыв окончен');
       }
@@ -191,29 +211,6 @@ setInterval(() => {
       }
     }
 
-    if (time === '14:28') {
-      for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Скоро перерыв');
-      }
-    }
-
-    if (time === '14:39') {
-      for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Перерыв окончен');
-      }
-    }
-
-    if (time === '15:58') {
-      for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Скоро перерыв');
-      }
-    }
-
-    if (time === '16:10') {
-      for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Перерыв окончен');
-      }
-    }
 
     if (time === '17:30') {
       for (let i = 0; i < id.length; i += 1) {
