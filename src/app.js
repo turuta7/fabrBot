@@ -110,18 +110,11 @@ bot.onText(/\/weather/, async msg => {
   const resp = 'Погода:';
   const chatId = msg.chat.id;
   const userId = msg.from.id;
-  bot.sendMessage(chatId, resp, {
+  bot.sendMessage(chatId, resp, {    
     reply_markup: {
-      remove_keyboard: true,
-      inline_keyboard: [
-        [
-          {
-            text: 'Погода в Черкассах',
-            callback_data: 'cherkasy',
-          },
-        ],
-      ],
-    },
+      keyboard: [["Sample text", "Second sample"],   ["Keyboard"], ["I'm robot"]]
+      }
+  });
   });
 
   try {
