@@ -110,11 +110,10 @@ bot.onText(/\/weather/, async msg => {
   const resp = 'Погода:';
   const chatId = msg.chat.id;
   const userId = msg.from.id;
-  bot.sendMessage(chatId, resp, {    
+  bot.sendMessage(chatId, resp, {
     reply_markup: {
-      keyboard: [["Sample text", "Second sample"],   ["Keyboard"], ["I'm robot"]]
-      }
-  });
+      keyboard: [['Sample text', 'Second sample'], ['Keyboard'], ["I'm robot"]],
+    },
   });
 
   try {
