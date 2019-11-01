@@ -105,23 +105,21 @@ bot.onText(/\/start/, async msg => {
   }
 });
 
-
 // -----------------------------------------------------
 bot.onText(/\/weather/, async msg => {
   const resp = 'Погода:';
   bot.sendMessage(chatId, resp, {
     reply_markup: {
-        remove_keyboard: true,
-        inline_keyboard: [
-            [
-                {
-                    text: 'Погода в Черкассах',
-                    callback_data: 'cherkasy',
-                },
-                
-            ],
+      remove_keyboard: true,
+      inline_keyboard: [
+        [
+          {
+            text: 'Погода в Черкассах',
+            callback_data: 'cherkasy',
+          },
         ],
-    }
+      ],
+    },
   });
 
   const userId = msg.from.id;
@@ -185,7 +183,7 @@ setInterval(() => {
       }
     }
 
-    if (time === '10:39' || (time === '14:39' || time === '16:10' ) {
+    if (time === '10:39' || time === '14:39' || time === '16:10') {
       for (let i = 0; i < id.length; i += 1) {
         bot.sendMessage(id[i], 'Перерыв окончен');
       }
@@ -210,7 +208,6 @@ setInterval(() => {
         bot.sendMessage(id[i], 'Уже нужно работать!!!');
       }
     }
-
 
     if (time === '17:30') {
       for (let i = 0; i < id.length; i += 1) {
