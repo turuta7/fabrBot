@@ -138,7 +138,7 @@ setInterval(() => {
         bot.sendMessage(id[i], 'Хорошего рабочего дня!!!');
     }
 
-    if (time === '17:29') {
+    if (time === '7:30') {
       for (let i = 0; i < id.length; i += 1) {
         const city = 'cherkasy';
         const { apiKeyWeather } = process.env;
@@ -177,7 +177,7 @@ setInterval(() => {
       }
     }
 
-    if (time === '12:35') {
+    if (time === '12:35' || time === '8:30') {
       text().then(x => {
         for (let i = 0; i < id.length; i += 1) {
           bot.sendMessage(id[i], `${x}`);
