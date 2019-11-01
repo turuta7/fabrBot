@@ -108,6 +108,8 @@ bot.onText(/\/start/, async msg => {
 // -----------------------------------------------------
 bot.onText(/\/weather/, async msg => {
   const resp = 'Погода:';
+  const chatId = msg.chat.id;
+  const userId = msg.from.id;
   bot.sendMessage(chatId, resp, {
     reply_markup: {
       remove_keyboard: true,
@@ -122,7 +124,6 @@ bot.onText(/\/weather/, async msg => {
     },
   });
 
-  const userId = msg.from.id;
   try {
     const city = 'cherkasy';
     const { apiKeyWeather } = process.env;
