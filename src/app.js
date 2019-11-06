@@ -63,8 +63,10 @@ testUserDB();
 
 // --------------------------------------------------
 bot.onText(/\/start/, async msg => {
+  const resp = 'Погода:';
   const chatId = msg.chat.id;
-  bot.sendMessage(chatId, {
+
+  bot.sendMessage(chatId, resp, {
     reply_markup: {
       keyboard: [['/weather']],
     },
