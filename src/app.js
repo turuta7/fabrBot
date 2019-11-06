@@ -63,6 +63,13 @@ testUserDB();
 
 // --------------------------------------------------
 bot.onText(/\/start/, async msg => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, {
+    reply_markup: {
+      keyboard: [['/weather']],
+    },
+  });
+
   try {
     bot.sendMessage(
       msg.chat.id,
@@ -107,14 +114,7 @@ bot.onText(/\/start/, async msg => {
 
 // -----------------------------------------------------
 bot.onText(/\/weather/, async msg => {
-  const resp = 'Погода:';
-  const chatId = msg.chat.id;
   const userId = msg.from.id;
-  bot.sendMessage(chatId, resp, {
-    reply_markup: {
-      keyboard: [['Sample text', 'Second sample'], ['Keyboard'], ["I'm robot"]],
-    },
-  });
 
   try {
     const city = 'cherkasy';
