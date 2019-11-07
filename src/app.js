@@ -148,6 +148,8 @@ bot.onText(/\/photo/, async msg => {
     .on('error', (err) => {
       console.log(err)
       let url = response.request.href;
+      console.log(url);
+      bot.sendMessage(userId, url);
       bot.sendPhoto({
         chat_id: chatId,
         caption: 'This is my test image',
