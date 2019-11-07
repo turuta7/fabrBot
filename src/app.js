@@ -15,6 +15,10 @@ app.get('/', (req, res) => {
   res.send('server Work');
 });
 
+let time;
+let id = [];
+
+// function return string
 function text() {
   return new Promise(resolve => {
     request(
@@ -34,7 +38,7 @@ function text() {
     );
   });
 }
-
+// function return  post "weather" by id user 
 function weather(userId) {
 
   const city = 'cherkasy';
@@ -57,8 +61,7 @@ function weather(userId) {
   })
 }
 
-let time;
-let id = [];
+
 
 async function testUserDB() {
   const now = new Date();
@@ -80,6 +83,8 @@ async function testUserDB() {
   console.log('------------------------------------');
   return {};
 }
+
+
 testUserDB();
 
 
@@ -136,6 +141,15 @@ bot.onText(/\/start/, async msg => {
   }
 });
 
+bot.onText(/\/photo/, async msg => {
+  const chatId = msg.chat.id;
+  request()
+    .get('https://source.unsplash.com/random')
+    .on('error', function (err) {
+      console.log(err)
+    })
+    .pipe(bot.sendPhoto(chatId, fs.createWriteStream('doodle.png')))
+})
 // --------------------------------------------------
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
@@ -166,22 +180,7 @@ setInterval(() => {
 
     if (time === '7:30') {
       for (let i = 0; i < id.length; i += 1) {
-        const city = 'cherkasy';
-        const { apiKeyWeather } = process.env;
-        const units = 'metric';
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyWeather}&units=${units}`;
-
-        request(url, (err, response, body) => {
-          if (err) {
-            console.log('error:', err);
-          } else {
-            const weather = JSON.parse(body);
-            const response1 = `*Сейчас: ${weather.main.temp} градусов в ${weather.name}*
-            Влажность: ${weather.main.humidity} %
-            Облачность: ${weather.clouds.all} %`;
-            bot.sendMessage(id[i], response1, { parse_mode: 'Markdown' });
-          }
-        });
+        weather(id[i]);
       }
     }
 
