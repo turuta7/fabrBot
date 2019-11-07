@@ -147,6 +147,9 @@ bot.onText(/\/photo/, async msg => {
     .get('https://source.unsplash.com/random')
     .on('error', (err) => {
       console.log(err)
+    })
+    .on('response', (response) => {
+
       let url = response.request.href;
       console.log(url);
       bot.sendMessage(userId, url);
@@ -156,6 +159,8 @@ bot.onText(/\/photo/, async msg => {
         photo: url//replace your image url here
       })
     })
+
+
   // .pipe(fs.createWriteStream('doodle.png'));
 
 
