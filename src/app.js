@@ -148,7 +148,11 @@ bot.onText(/\/photo/, async msg => {
     .on('error', (err) => {
       console.log(err)
       let url = response.request.href;
-      bot.sendPhoto(chatId, url)
+      bot.sendPhoto({
+        chat_id: chatId,
+        caption: 'This is my test image',
+        photo: url//replace your image url here
+      })
     })
   // .pipe(fs.createWriteStream('doodle.png'));
 
