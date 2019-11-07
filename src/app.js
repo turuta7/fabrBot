@@ -177,7 +177,7 @@ setInterval(() => {
         bot.sendMessage(id[i], 'Скоро перерыв')
           .catch(err => {
             console.log(id[i]);
-            console.log(err);
+            console.log('error');
           });;
       }
     }
@@ -187,7 +187,7 @@ setInterval(() => {
         bot.sendMessage(id[i], 'Перерыв окончен')
           .catch(err => {
             console.log(id[i]);
-            console.log(err);
+            console.log('error');
           });
       }
     }
@@ -197,7 +197,7 @@ setInterval(() => {
         bot.sendMessage(id[i], 'Обед через 5 мин.')
           .catch(err => {
             console.log(id[i]);
-            console.log(err);
+            console.log('error');
           });;
       }
     }
@@ -215,7 +215,7 @@ setInterval(() => {
         bot.sendMessage(id[i], 'Уже нужно работать!!!')
           .catch(err => {
             console.log(id[i]);
-            console.log(err);
+            console.log('error');
           });;
       }
     }
@@ -225,7 +225,7 @@ setInterval(() => {
         bot.sendMessage(id[i], 'Пора домой!!! До завтра!')
           .catch(err => {
             console.log(id[i]);
-            console.log(err);
+            console.log('error');
           });;
       }
     }
