@@ -117,7 +117,7 @@ bot.onText(/\/start/, async msg => {
 // --------------------------------------------------
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
-  if (msg.text.toString() === Погода) {
+  if (msg.text.toString() === 'Погода') {
     return request(url, (err, resp, body) => {
       bot.sendMessage(msg.chat.id, 'Ok');
     });
