@@ -35,7 +35,7 @@ function text() {
   });
 }
 
-function weather() {
+function weather(userId) {
 
   const city = 'cherkasy';
   const { apiKeyWeather } = process.env;
@@ -140,7 +140,7 @@ bot.onText(/\/start/, async msg => {
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   if (msg.text.toString() === 'Погода') {
-    weather()
+    weather(chatId)
   }
 })
 // -----------------------------------------------------
@@ -148,7 +148,7 @@ bot.onText(/\/weather/, async msg => {
   const userId = msg.from.id;
 
   try {
-    weather();
+    weather(userId);
   } catch (error) {
     console.log(error);
   }
