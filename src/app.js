@@ -174,19 +174,31 @@ setInterval(() => {
 
     if (time === '10:28' || time === '14:28' || time === '15:58') {
       for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Скоро перерыв');
+        bot.sendMessage(id[i], 'Скоро перерыв')
+          .catch(err => {
+            console.log(id[i]);
+            console.log(err);
+          });;
       }
     }
 
     if (time === '10:39' || time === '14:39' || time === '16:10') {
       for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Перерыв окончен');
+        bot.sendMessage(id[i], 'Перерыв окончен')
+          .catch(err => {
+            console.log(id[i]);
+            console.log(err);
+          });
       }
     }
 
     if (time === '12:25') {
       for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Обед через 5 мин.');
+        bot.sendMessage(id[i], 'Обед через 5 мин.')
+          .catch(err => {
+            console.log(id[i]);
+            console.log(err);
+          });;
       }
     }
 
@@ -200,19 +212,27 @@ setInterval(() => {
 
     if (time === '12:59') {
       for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Уже нужно работать!!!');
+        bot.sendMessage(id[i], 'Уже нужно работать!!!')
+          .catch(err => {
+            console.log(id[i]);
+            console.log(err);
+          });;
       }
     }
 
     if (time === '17:30') {
       for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Пора домой!!! До завтра!');
+        bot.sendMessage(id[i], 'Пора домой!!! До завтра!')
+          .catch(err => {
+            console.log(id[i]);
+            console.log(err);
+          });;
       }
     }
   }
 }, 58000);
 
-setInterval(function() {
+setInterval(function () {
   https.get('https://fabrnew.herokuapp.com/');
 }, 300000); // every 5 minutes (300000)
 
