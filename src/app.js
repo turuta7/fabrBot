@@ -147,8 +147,12 @@ bot.onText(/\/photo/, async msg => {
     .get('https://source.unsplash.com/random')
     .on('error', (err) => {
       console.log(err)
+      let url = response.request.href;
+      bot.sendPhoto(chatId, url)
     })
-    .pipe(bot.sendPhoto(chatId, 'This is my test image', fs.createWriteStream('doodle.png')));
+  // .pipe(fs.createWriteStream('doodle.png'));
+
+
 })
 // --------------------------------------------------
 bot.on('message', (msg) => {
