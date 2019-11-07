@@ -143,9 +143,9 @@ bot.onText(/\/start/, async msg => {
 
 bot.onText(/\/photo/, async msg => {
   const chatId = msg.chat.id;
-  request()
+  request
     .get('https://source.unsplash.com/random')
-    .on('error', function (err) {
+    .on('error', (err) => {
       console.log(err)
     })
     .pipe(bot.sendPhoto(chatId, fs.createWriteStream('doodle.png')))
