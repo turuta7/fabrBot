@@ -27,7 +27,6 @@ function text() {
         if (response.statusCode === 201) {
           console.log('document saved as: http://mikeal.iriscouch.com/testjs/');
         } else {
-          //  console.log(`status: ${response.statusCode}`);
           const res = body.split('(')[1].split('"')[3];
           resolve(res);
         }
@@ -61,14 +60,15 @@ async function testUserDB() {
 }
 testUserDB();
 
+
+
+
 // --------------------------------------------------
 bot.onText(/\/start/, async msg => {
-  const resp = 'Погода:';
   const chatId = msg.chat.id;
-
-  bot.sendMessage(chatId, resp, {
+  bot.sendMessage(chatId, 'testing custom keyboard', {
     reply_markup: {
-      keyboard: [['/weather']],
+      keyboard: [['Погода']],
     },
   });
 
@@ -114,128 +114,133 @@ bot.onText(/\/start/, async msg => {
   }
 });
 
-// -----------------------------------------------------
-bot.onText(/\/weather/, async msg => {
-  const userId = msg.from.id;
+// --------------------------------------------------
+bot.on('Погода', (msg) => {
+  const chatId = msg.chat.id;
+  // send a message to the chat acknowledging receipt of their message
+  bot.sendMessage(chatId, 'Received your message');
+  // -----------------------------------------------------
+  bot.onText(/\/weather/, async msg => {
+    const userId = msg.from.id;
 
-  try {
-    const city = 'cherkasy';
-    const { apiKeyWeather } = process.env;
-    const units = 'metric';
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyWeather}&units=${units}`;
+    try {
+      const city = 'cherkasy';
+      const { apiKeyWeather } = process.env;
+      const units = 'metric';
+      const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyWeather}&units=${units}`;
 
-    request(url, (err, response, body) => {
-      if (err) {
-        console.log('error:', err);
-      } else {
-        const weather = JSON.parse(body);
-        const clouds = 100 - weather.clouds.all;
-        const response1 = `*Сейчас: ${weather.main.temp} градусов в ${weather.name}*
+      request(url, (err, response, body) => {
+        if (err) {
+          console.log('error:', err);
+        } else {
+          const weather = JSON.parse(body);
+          const clouds = 100 - weather.clouds.all;
+          const response1 = `*Сейчас: ${weather.main.temp} градусов в ${weather.name}*
         Влажность: ${clouds} %
         Облачность: ${weather.clouds.all} %`;
-        bot.sendMessage(userId, response1, { parse_mode: 'Markdown' });
-      }
-    });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-setInterval(() => {
-  const now = new Date();
-  time = `${now.getHours() + 2}:${now.getMinutes()}`;
-  // console.log(time);
-  if (now.getDay() >= 1 && now.getDay() <= 5) {
-    if (time === '8:28') {
-      for (let i = 0; i < id.length; i += 1)
-        bot.sendMessage(id[i], 'Хорошего рабочего дня!!!');
+          bot.sendMessage(userId, response1, { parse_mode: 'Markdown' });
+        }
+      });
+    } catch (error) {
+      console.log(error);
     }
+  });
 
-    if (time === '7:30') {
-      for (let i = 0; i < id.length; i += 1) {
-        const city = 'cherkasy';
-        const { apiKeyWeather } = process.env;
-        const units = 'metric';
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyWeather}&units=${units}`;
+  setInterval(() => {
+    const now = new Date();
+    time = `${now.getHours() + 2}:${now.getMinutes()}`;
+    // console.log(time);
+    if (now.getDay() >= 1 && now.getDay() <= 5) {
+      if (time === '8:28') {
+        for (let i = 0; i < id.length; i += 1)
+          bot.sendMessage(id[i], 'Хорошего рабочего дня!!!');
+      }
 
-        request(url, (err, response, body) => {
-          if (err) {
-            console.log('error:', err);
-          } else {
-            const weather = JSON.parse(body);
-            const response1 = `*Сейчас: ${weather.main.temp} градусов в ${weather.name}*
+      if (time === '7:30') {
+        for (let i = 0; i < id.length; i += 1) {
+          const city = 'cherkasy';
+          const { apiKeyWeather } = process.env;
+          const units = 'metric';
+          const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyWeather}&units=${units}`;
+
+          request(url, (err, response, body) => {
+            if (err) {
+              console.log('error:', err);
+            } else {
+              const weather = JSON.parse(body);
+              const response1 = `*Сейчас: ${weather.main.temp} градусов в ${weather.name}*
             Влажность: ${weather.main.humidity} %
             Облачность: ${weather.clouds.all} %`;
-            bot.sendMessage(id[i], response1, { parse_mode: 'Markdown' });
+              bot.sendMessage(id[i], response1, { parse_mode: 'Markdown' });
+            }
+          });
+        }
+      }
+
+      if (time === '10:28' || time === '14:28' || time === '15:58') {
+        for (let i = 0; i < id.length; i += 1) {
+          bot.sendMessage(id[i], 'Скоро перерыв')
+            .catch(err => {
+              console.log(id[i]);
+              console.log('error');
+            });;
+        }
+      }
+
+      if (time === '10:39' || time === '14:39' || time === '16:10') {
+        for (let i = 0; i < id.length; i += 1) {
+          bot.sendMessage(id[i], 'Перерыв окончен')
+            .catch(err => {
+              console.log(id[i]);
+              console.log('error');
+            });
+        }
+      }
+
+      if (time === '12:25') {
+        for (let i = 0; i < id.length; i += 1) {
+          bot.sendMessage(id[i], 'Обед через 5 мин.')
+            .catch(err => {
+              console.log(id[i]);
+              console.log('error');
+            });;
+        }
+      }
+
+      if (time === '12:35' || time === '8:30') {
+        text().then(x => {
+          for (let i = 0; i < id.length; i += 1) {
+            bot.sendMessage(id[i], `${x}`);
           }
         });
       }
-    }
 
-    if (time === '10:28' || time === '14:28' || time === '15:58') {
-      for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Скоро перерыв')
-          .catch(err => {
-            console.log(id[i]);
-            console.log('error');
-          });;
-      }
-    }
-
-    if (time === '10:39' || time === '14:39' || time === '16:10') {
-      for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Перерыв окончен')
-          .catch(err => {
-            console.log(id[i]);
-            console.log('error');
-          });
-      }
-    }
-
-    if (time === '12:25') {
-      for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Обед через 5 мин.')
-          .catch(err => {
-            console.log(id[i]);
-            console.log('error');
-          });;
-      }
-    }
-
-    if (time === '12:35' || time === '8:30') {
-      text().then(x => {
+      if (time === '12:59') {
         for (let i = 0; i < id.length; i += 1) {
-          bot.sendMessage(id[i], `${x}`);
+          bot.sendMessage(id[i], 'Уже нужно работать!!!')
+            .catch(err => {
+              console.log(id[i]);
+              console.log('error');
+            });;
         }
-      });
-    }
+      }
 
-    if (time === '12:59') {
-      for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Уже нужно работать!!!')
-          .catch(err => {
-            console.log(id[i]);
-            console.log('error');
-          });;
+      if (time === '17:30') {
+        for (let i = 0; i < id.length; i += 1) {
+          bot.sendMessage(id[i], 'Пора домой!!! До завтра!')
+            .catch(err => {
+              console.log(id[i]);
+              console.log('error');
+            });;
+        }
       }
     }
+  }, 58000);
 
-    if (time === '17:30') {
-      for (let i = 0; i < id.length; i += 1) {
-        bot.sendMessage(id[i], 'Пора домой!!! До завтра!')
-          .catch(err => {
-            console.log(id[i]);
-            console.log('error');
-          });;
-      }
-    }
-  }
-}, 58000);
+  setInterval(function () {
+    https.get('https://fabrnew.herokuapp.com/');
+  }, 300000); // every 5 minutes (300000)
 
-setInterval(function () {
-  https.get('https://fabrnew.herokuapp.com/');
-}, 300000); // every 5 minutes (300000)
-
-app.listen(process.env.PORT || 4040, () => {
-  console.log(`Server Work`);
-});
+  app.listen(process.env.PORT || 4040, () => {
+    console.log(`Server Work`);
+  });
