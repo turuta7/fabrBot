@@ -36,24 +36,24 @@ function text() {
 }
 
 function weather() {
-  return new Promise(resolve => {
-    const city = 'cherkasy';
-    const { apiKeyWeather } = process.env;
-    const units = 'metric';
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyWeather}&units=${units}`;
 
-    request(url, (err, response, body) => {
-      if (err) {
-        console.log('error:', err);
-      } else {
-        const weather = JSON.parse(body);
-        const clouds = 100 - weather.clouds.all;
-        const response1 = `*Сейчас: ${weather.main.temp} градусов в ${weather.name}*
+  const city = 'cherkasy';
+  const { apiKeyWeather } = process.env;
+  const units = 'metric';
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKeyWeather}&units=${units}`;
+
+  request(url, (err, response, body) => {
+    if (err) {
+      console.log('error:', err);
+    } else {
+      const weather = JSON.parse(body);
+      const clouds = 100 - weather.clouds.all;
+      const response1 = `*Сейчас: ${weather.main.temp} градусов в ${weather.name}*
         Влажность: ${clouds} %
         Облачность: ${weather.clouds.all} %`;
-        bot.sendMessage(userId, response1, { parse_mode: 'Markdown' });
-      }
-    });
+      bot.sendMessage(userId, response1, { parse_mode: 'Markdown' });
+    }
+
   })
 }
 
@@ -140,7 +140,7 @@ bot.onText(/\/start/, async msg => {
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   if (msg.text.toString() === 'Погода') {
-    bot.sendMessage(msg.chat.id, weather())
+    weather()
   }
 })
 // -----------------------------------------------------
