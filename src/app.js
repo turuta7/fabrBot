@@ -148,7 +148,7 @@ bot.onText(/\/photo/, async msg => {
     .on('error', (err) => {
       console.log(err)
     })
-    .pipe(bot.sendPhoto(chatId, fs.createWriteStream('doodle.png')))
+    .pipe(bot.sendPhoto(chatId, 'This is my test image', fs.createWriteStream('doodle.png')));
 })
 // --------------------------------------------------
 bot.on('message', (msg) => {
