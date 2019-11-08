@@ -150,10 +150,10 @@ bot.onText(/\/photo/, async msg => {
   //   .on('error', (err) => {
   //     console.log(err)
   //   })
-  const stream = require('http').get('https://source.unsplash.com/random'); // use a proper URL here!
-  console.log(stream);
+  // const stream = require('http').get('https://source.unsplash.com/random'); // use a proper URL here!
+  // console.log(stream);
 
-  bot.sendPhoto(chatId, stream);
+  bot.sendPhoto(chatId, request('https://source.unsplash.com/random'));
   // .on('response', async (response) => {
   //   let url = await response.request.href;
   //   console.log(url)
