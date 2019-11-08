@@ -150,23 +150,15 @@ bot.onText(/\/photo/, async msg => {
     .on('error', (err) => {
       console.log(err)
     })
-    .pipe(fs.createWriteStream('photo.png'))
-  fs.readFile('photo.png', function (err, data) {
-    bot.sendPhoto({
-      chat_id: chatId,
-      caption: 'This is my test image',
-      photo: data//replace your image url here
-    })
-  })
-    .on('response', (response) => {
 
+    .on('response', (response) => {
       let url = response.request.href;
       console.log(url);
-      bot.sendMessage(chatId, url);
+      //  bot.sendMessage(chatId, url);
       bot.sendPhoto({
-        chat_id: chatId,
+        chatId,
         caption: 'This is my test image',
-        photo: url//replace your image url here
+        photo: url
       })
     })
 
