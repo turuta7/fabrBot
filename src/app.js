@@ -152,7 +152,7 @@ bot.onText(/\/photo/, async msg => {
     })
 
     .on('response', (response) => {
-      let url = response.request.href;
+      let url = await response.request.href;
       console.log(url);
       //  bot.sendMessage(chatId, url);
       bot.sendPhoto({
