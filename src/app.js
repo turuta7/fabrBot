@@ -155,8 +155,9 @@ bot.on('message', (msg) => {
   }
   if (msg.text.toString() === 'Рандомное фото') {
     bot.sendPhoto(msg.chat.id, request('https://source.unsplash.com/random'));
-  })
   }
+})
+
 
 // -----------------------------------------------------
 bot.onText(/\/weather/, async msg => {
