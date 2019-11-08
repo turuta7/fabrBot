@@ -156,7 +156,7 @@ bot.onText(/\/photo/, async msg => {
       console.log(url);
       //  bot.sendMessage(chatId, url);
       bot.sendPhoto({
-        chatId,
+        chatId: chatId,
         caption: 'This is my test image',
         photo: url
       })
