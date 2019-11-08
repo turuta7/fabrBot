@@ -145,20 +145,23 @@ bot.onText(/\/start/, async msg => {
 
 bot.onText(/\/photo/, async msg => {
   const chatId = msg.chat.id;
-  request
-    .get('https://source.unsplash.com/random')
-    .on('error', (err) => {
-      console.log(err)
-    })
+  // request
+  //   .get('https://source.unsplash.com/random')
+  //   .on('error', (err) => {
+  //     console.log(err)
+  //   })
+  const stream = require('http').get('https://source.unsplash.com/random'); // use a proper URL here!
+  console.log(stream);
 
-    .on('response', async (response) => {
-      let url = await response.request.href;
-      console.log(url)
-      bot.sendPhoto({
-        chatId: chatId,
-        photo: url
-      })
-    })
+  bot.sendPhoto(chatId, stream);
+  // .on('response', async (response) => {
+  //   let url = await response.request.href;
+  //   console.log(url)
+  //   bot.sendPhoto({
+  //     chatId: chatId,
+  //     photo: url
+  //   })
+  // })
 
 
   // .pipe(fs.createWriteStream('doodle.png'));
