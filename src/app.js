@@ -95,9 +95,9 @@ testUserDB();
 // --------------------------------------------------
 bot.onText(/\/start/, async msg => {
   const chatId = msg.chat.id;
-  bot.sendMessage(chatId, 'testing custom keyboard', {
+  bot.sendMessage(chatId, {
     reply_markup: {
-      keyboard: [['Погода']],
+      keyboard: [['Погода'], ['Рандомное фото']],
     },
   });
 
@@ -144,37 +144,20 @@ bot.onText(/\/start/, async msg => {
 });
 
 bot.onText(/\/photo/, async msg => {
-  const chatId = msg.chat.id;
-  // request
-  //   .get('https://source.unsplash.com/random')
-  //   .on('error', (err) => {
-  //     console.log(err)
-  //   })
-  // const stream = require('http').get('https://source.unsplash.com/random'); // use a proper URL here!
-  // console.log(stream);
-
-  bot.sendPhoto(chatId, request('https://source.unsplash.com/random'));
-  // .on('response', async (response) => {
-  //   let url = await response.request.href;
-  //   console.log(url)
-  //   bot.sendPhoto({
-  //     chatId: chatId,
-  //     photo: url
-  //   })
-  // })
-
-
-  // .pipe(fs.createWriteStream('doodle.png'));
-
-
+  bot.sendPhoto(msg.chat.id, request('https://source.unsplash.com/random'));
 })
+
 // --------------------------------------------------
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   if (msg.text.toString() === 'Погода') {
     weather(chatId)
   }
-})
+  if (msg.text.toString() === 'Рандомное фото') {
+    bot.sendPhoto(msg.chat.id, request('https://source.unsplash.com/random'));
+  })
+  }
+
 // -----------------------------------------------------
 bot.onText(/\/weather/, async msg => {
   const userId = msg.from.id;
