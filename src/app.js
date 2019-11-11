@@ -95,7 +95,7 @@ testUserDB();
 // --------------------------------------------------
 bot.onText(/\/start/, async msg => {
   const chatId = msg.chat.id;
-  bot.sendMessage(chatId, {
+  bot.sendMessage(chatId, 'test', {
     reply_markup: {
       keyboard: [['Погода', 'Рандомное фото']]
     },
