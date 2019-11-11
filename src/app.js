@@ -97,7 +97,7 @@ bot.onText(/\/start/, async msg => {
   const chatId = msg.chat.id;
   bot.sendMessage(chatId, {
     reply_markup: {
-      keyboard: [['Погода'], ['Рандомное фото']],
+      keyboard: [['Погода', 'Рандомное фото']]
     },
   });
 
